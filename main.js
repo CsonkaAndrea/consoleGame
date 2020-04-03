@@ -32,7 +32,7 @@ let score = 0;
         return 0
     } else if (userInput === correctAnswer) {
         console.log('Great, you are right! :)')
-        score += 1
+        score++
         answerEvaluation()
     } else {
         console.log('Wrong answer, try again!')
