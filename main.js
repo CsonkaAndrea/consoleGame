@@ -14,17 +14,26 @@ class Question {
     }
 }
 
+
 let questionOne = new Question('Do you like birds?', ['0 : yes', '1 : no'], 0)
 let questionTwo = new Question('Which bird is your favorite?', ['0 : nightingale', '1 : blackbird'], 1)
 let questionThree = new Question('Do you like plants?', ['0 : yes', '1 : no'], 0)
 
 let allQuestions = [questionOne, questionTwo, questionThree];
 
+let score = 0;
+
 (function answerEvaluation() {
     correctAnswer = randomQuestionGenerator(allQuestions)
     userInput = inputBox()
-    if (userInput === correctAnswer) {
+    if (userInput === 'exit') {
+        console.log('Your score: ' + score);
+        score = 0
+        return 0
+    } else if (userInput === correctAnswer) {
         console.log('Great, you are right! :)')
+        score += 1
+        answerEvaluation()
     } else {
         console.log('Wrong answer, try again!')
         answerEvaluation()
@@ -39,8 +48,11 @@ function randomQuestionGenerator(allQuestions) {
 }
 
 function inputBox() {
-    let input = parseInt(prompt("Type here your number!"))
-    console.log(input)
-    return input
+    let input = prompt("Type here your number or exit, if you want to quit the game!").toLowerCase()
+    if (input === 'exit') {
+        return input
+    } else {
+        return parseInt(input)
+    }
 }
 
